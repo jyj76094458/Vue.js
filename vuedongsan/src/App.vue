@@ -7,7 +7,7 @@
     안녕하세요2
   </div>
 
-  <Modal :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"/>
+  <Modal @closeModal="모달창열렸니 = false;" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"/>
 
   <div class="menu">
     <a v-for="a in 메뉴들" :key="a">{{a}}</a>
@@ -15,15 +15,13 @@
 
   <Discount :오브젝트="오브젝트" />
 
-
-  <Card :원룸="원룸들[i]" v-for="(작명,i) in 원룸들" :key="작명"/>
+  <Card @openModal="모달창열렸니 = true; 누른거 = $event" :원룸="원룸들[i]" v-for="(작명,i) in 원룸들" :key="작명"/>
 
   <!-- <Card :원룸="원룸들[1]" />
   <Card :원룸="원룸들[2]"/>
   <Card :원룸="원룸들[3]"/>
   <Card :원룸="원룸들[4]"/>
   <Card :원룸="원룸들[5]"/> -->
-
 
   <!-- <div v-for="(a,i) in 원룸들" :key="i">
     <img :src="a.image" class="room-img">
