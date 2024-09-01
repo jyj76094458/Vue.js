@@ -18,7 +18,7 @@ createApp({
             this.message = this.message.split('').reverse().join('');
         },
     },
-    render() {
+    render() { // data와 methods에 정의한 속성 사용
         return h('div', [
             h('p', this.message),
             h('button', { onClick: this.reverse }, 'Reverse'),
