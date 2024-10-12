@@ -56,8 +56,72 @@ export default {
       // uid: '',
       // uid: 'sucoding',
       // upw: '',
-      message: '',
+      // message: '',
+      // fruits: true, // true(체크), false(미체크)
+      // fruits: ['banana', 'orange'],
+      // gender: 'male',
+      //  selectItem: 'cafeLatte', // value 속성의 값이 cafeLatte인 option 태그 선택
+
+      // message: '',
+
+      // selected: 'banana',
+      // price: 500,
+
+      // firstName: 'Gildong',
+      // lastName: 'Hong',
+
+      // numArr: [1, 2, 3, 4, 5],
+
+      // inputStr: '',
+
+      // arr: [0, 1, 2],
+      // obj: { name: "chulsu" },
+
+      primaryColor: 'red',
+      primaryStyle: 'italic',
     };
+  },
+  computed: {
+    // fullName() {
+    //   console.log('computed fullname');
+    //   return `${this.lastName} ${this.firstName}`;
+    // },
+
+    evenSum() {
+      return this.numArr
+      .filter((v) => v % 2 === 0)
+      .reduce((acc, cur) => acc + cur, 0);
+    },
+  },
+  watch: {
+    // inputStr(newValue, oldValue) {
+    //   console.log(`old value : ${oldValue}`);
+    //   console.log(`new value : ${newValue}`);
+    // },
+
+    // arr(newValue, oldValue) {
+    //   console.log(`old value : ${oldValue}`);
+    //   console.log(`new value : ${newValue}`);
+    // },
+    // obj(newValue, oldValue) {
+    //   console.log(`old value : ${JSON.stringify(oldValue)}`);
+    //   console.log(`new value : ${JSON.stringify(newValue)}`);
+    // },
+
+    arr: {
+      handler(newValue, oldValue) {
+        console.log(`old value : ${oldValue}`);
+        console.log(`new value : ${newValue}`);
+      },
+      deep: true,
+    },
+    obj: {
+      handler(newValue, oldValue) {
+        console.log(`old value : ${JSON.stringify(oldValue)}`);
+        console.log(`new value : ${JSON.stringify(newValue)}`);
+      },
+      deep: true,
+    },
   },
   methods: {
     // increasement() {
@@ -67,8 +131,44 @@ export default {
     //   console.log(`id: ${this.uid}`);
     //   console.log(`pw: ${this.upw}`);
     // },
-    printData() {
-      console.log(`id: ${this.message}`);
+
+    // printData() {
+    //   console.log(`id: ${this.message}`);
+    // },
+
+    // printData() {
+    //   console.log(this.fruits); // 선택된 입력 요소의 value 속성 값 출력
+    // },
+
+    // printData() {
+    //   console.log(this.gender); // 선택된 입력 요소의 value 속성 값 출력
+    // },
+
+    // printData() {
+    //   console.log(this.selectItem);
+    // },
+
+    // onChangeHandler($event) {
+    //   this.message = $event.target.value;
+    // },
+
+    // onChangeHandler($event) {
+    //   if (this.selected === 'banana') {
+    //     this.price = 500;
+    //   }
+    //   if (this.selected === 'apple') {
+    //     this.price = 700;
+    //   }
+    // },
+
+    // onSubmitHandler(e) {
+    //   e.preventDefault();
+    //   // 별도의 폼 전송 처리
+    //   console.log('onSubmit Handler!');
+    // },
+
+    onKeyupHandler() {
+      console.log(`keyup event!`);
     },
   },
 }
@@ -130,18 +230,112 @@ export default {
   <button @click="name = '영희'">이름 변경</button>
   <button @click="gender = '여자'">성별 변경</button>
   <button @click="age = 30">나이 변경</button> -->
+
   <!-- <form id="loginForm">
     <label for="uid">아이디: <input type="text" id="uid" v-model="uid" /></label>
     <label for="upw">비밀번호: <input type="password" id="upw" v-model="upw" /></label>
     <button type="button" @click="login">로그인</button>
   </form> -->
-  <form id="loginForm">
+
+  <!-- <form id="loginForm">
     <textarea v-model="message"></textarea>
     <button type="button" @click="printData">데이터 출력</button>
-  </form>
+  </form> -->
+
+  <!-- <form id="loginForm">
+    <label for="banana">
+      <input type="checkbox" id="banana" v-model="fruits" value="banana" />banana
+    </label>
+  </form> -->
+
+  <!-- <form id="loginForm">
+    <label for="banana">
+      <input type="checkbox" id="banana" v-model="fruits" value="banana" />banana
+    </label>
+    <label for="orange">
+      <input type="checkbox" id="orange" v-model="fruits" value="orange" />orange
+    </label>
+    <label for="apple">
+      <input type="checkbox" id="apple" v-model="fruits" value="apple" />apple
+    </label>
+    <button type="button" @click="printData">확인</button>
+  </form> -->
+
+  <!-- <form id="loginForm">
+    <label for="male">
+      <input type="radio" id="male" name="gender" v-model="gender" value="male" />male
+    </label>
+    <label for="female">
+      <input type="radio" id="female" name="gender" v-model="gender" value="female" />female
+    </label>
+    <button type="button" @click="printData">확인</button>
+  </form> -->
+
+  <!-- <form id="loginForm">
+    <select v-model="selectItem">
+      <option value="americano">아메리카노</option>
+      <option value="espresso">에스프레소</option>
+      <option value="cafeLatte">카페라떼</option>
+    </select>
+    <button type="button" @click="printData">확인</button>
+  </form> -->
+
+  <!-- <input type="text" v-model="message" />
+  {{  message }} -->
+
+  <!-- <input type="text" @input="onChangeHandler($event)" />
+  {{ message }} -->
+  
+  <!-- <select v-model="selected" @change="onChangeHandler">
+    <option value="banana">바나나</option>
+    <option value="apple">사과</option>
+  </select>
+  가격: {{ price }}원 -->
+
+  <!-- <form @submit="onSubmitHandler">
+    <button type="submit">전송</button>
+  </form> -->
+
+  <!-- <input type="text" @keyup="onKeyupHandler" /> -->
+
+  <!-- <h1>{{ lastName }} {{ firstName }}</h1>
+  <h1>{{ lastName }} {{ firstName }}</h1> -->
+
+  <!-- <h1>{{ fullName }}</h1>
+  <h1>{{ fullName }}</h1> -->
+
+  <!-- <h1>{{ numArr.filter((v) => v % 2 === 0).reduce((acc, cur) => acc + cur, 0) }}</h1> -->
+
+  <!-- <h1>{{ evenSum }}</h1> -->
+
+  <!-- <input type="text" v-model="inputStr" /> -->
+
+  <!-- <h1>{{ arr }}</h1>
+  <h1>{{ obj }}</h1>
+  <button @click="arr.push(3)">배열 변경</button>
+  <button @click="obj.age = 20">객체 변경</button> -->
+
+  <!-- <h1 style="color: red; font-style: italic">Inline Style</h1> -->
+
+  <!-- <h1 :style="{ color: primaryColor, fontStyle: primaryStyle }">Inline Style</h1> -->
+
+  <!-- <h1>Internal Style</h1> -->
+
+  <h1>External Style</h1>
+
 </template>
 <style>
-.red-color {
+/* .red-color {
   color: red;
-}
+} */
+
+/* h1 {
+  color: red;
+  font-style: italic;
+} */
+
+ /* @import './assets/main.css'; */
+
+@import '~/main.css';
+
 </style>
